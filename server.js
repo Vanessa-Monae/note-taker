@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-
+const fs = require('fs');
 
 
 const PORT = process.env.PORT || 3001;
@@ -33,7 +33,13 @@ app.get('*', (req, res) =>
 
 // POST Route for /api/notes
 app.post('/api/notes', (req, res) => {
-
+  let existingNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  let neoNote = req.body;
+  let neoID = existingNotes.length.toString();
+  neoNote.id = neoID;
+  existingNotes.push(neoNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(existingNotes));
+  res.json(existingNotes);
 });
 
 app.listen(PORT, () =>
