@@ -16,9 +16,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-// GET Route for / notes
+// GET Route for /notes
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
+);
+
+// GET Route for /api/notes
+app.get('/api/notes', (req, res) =>
+  res.sendFile(path.join(__dirname, '/db/db.json'))
 );
 
 // GET Route for feedback page
