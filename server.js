@@ -26,11 +26,6 @@ app.get('/api/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/db/db.json'))
 );
 
-// GET Route for feedback page
-app.get('/feedback', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))
-);
-
 // Wildcard route to direct users to index.html
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/index.html'))
